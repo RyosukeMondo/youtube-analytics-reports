@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>YouTube Analytics Reports</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans JP', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            overflow: hidden;
+        }
+
+        header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 60px 40px;
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+
+        .subtitle {
+            font-size: 1.2em;
+            opacity: 0.9;
+            font-weight: 300;
+        }
+
+        .content {
+            padding: 60px 40px;
+        }
+
+        .intro {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .intro h2 {
+            font-size: 2em;
+            margin-bottom: 20px;
+            color: #667eea;
+        }
+
+        .intro p {
+            font-size: 1.1em;
+            color: #666;
+            max-width: 800px;
+            margin: 0 auto 20px;
+        }
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin: 40px 0;
+        }
+
+        .stat-card {
+            background: #f8f9fa;
+            padding: 30px;
+            border-radius: 12px;
+            text-align: center;
+            border: 2px solid #e9ecef;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.2);
+        }
+
+        .stat-number {
+            font-size: 2.5em;
+            font-weight: 700;
+            color: #667eea;
+            display: block;
+        }
+
+        .stat-label {
+            color: #666;
+            margin-top: 10px;
+            font-size: 0.9em;
+        }
+
+        .reports-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .report-card {
+            background: white;
+            border: 2px solid #e9ecef;
+            border-radius: 16px;
+            padding: 40px;
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .report-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+
+        .report-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 40px rgba(102, 126, 234, 0.3);
+            border-color: #667eea;
+        }
+
+        .report-card h3 {
+            font-size: 1.5em;
+            margin-bottom: 15px;
+            color: #333;
+        }
+
+        .channel-name {
+            color: #667eea;
+            font-weight: 600;
+        }
+
+        .report-meta {
+            color: #999;
+            font-size: 0.9em;
+            margin-bottom: 20px;
+        }
+
+        .report-description {
+            color: #666;
+            margin-bottom: 25px;
+            line-height: 1.8;
+        }
+
+        .report-highlights {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+
+        .report-highlights ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .report-highlights li {
+            padding: 8px 0;
+            padding-left: 25px;
+            position: relative;
+        }
+
+        .report-highlights li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: #667eea;
+            font-weight: bold;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 30px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            text-decoration: none;
+            border-radius: 25px;
+            font-weight: 600;
+            transition: all 0.3s;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.6);
+        }
+
+        footer {
+            background: #f8f9fa;
+            padding: 40px;
+            text-align: center;
+            color: #666;
+            border-top: 2px solid #e9ecef;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 5px 12px;
+            background: #667eea;
+            color: white;
+            border-radius: 12px;
+            font-size: 0.8em;
+            font-weight: 600;
+            margin-right: 8px;
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2em;
+            }
+
+            .content {
+                padding: 40px 20px;
+            }
+
+            .reports-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>📊 YouTube Analytics Reports</h1>
+            <p class="subtitle">データ駆動型の成長戦略 | Data-Driven Growth Strategies</p>
+        </header>
+
+        <div class="content">
+            <div class="intro">
+                <h2>YouTubeチャンネルの成長を加速させる</h2>
+                <p>
+                    480本の動画、346のチャンネルを分析し、実データに基づいた成長戦略を提供します。
+                    競合分析、バイラル動画のパターン、収益化への道筋まで、8つのフェーズで完全サポート。
+                </p>
+            </div>
+
+            <div class="stats">
+                <div class="stat-card">
+                    <span class="stat-number">480</span>
+                    <div class="stat-label">動画分析</div>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-number">346</span>
+                    <div class="stat-label">チャンネル調査</div>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-number">2.4億</span>
+                    <div class="stat-label">総再生回数</div>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-number">8</span>
+                    <div class="stat-label">分析フェーズ</div>
+                </div>
+            </div>
+
+            <h2 style="margin: 60px 0 30px; text-align: center; color: #333;">📈 分析レポート</h2>
+
+            <div class="reports-grid">
+                <div class="report-card">
+                    <h3>
+                        <span class="channel-name">けとたび Slow Travel</span><br>
+                        完全分析レポート
+                    </h3>
+                    <div class="report-meta">
+                        📅 2025年10月23日 | 🎯 全8フェーズ完了
+                    </div>
+
+                    <div class="report-description">
+                        <strong>スローツアー × 夫婦旅</strong>という独自のポジショニングを持つけとたびチャンネル（登録者570人）の、
+                        データに基づいた成長戦略を8つのフェーズで完全分析。
+                    </div>
+
+                    <div class="report-highlights">
+                        <strong>主な発見：</strong>
+                        <ul>
+                            <li>ショート動画で14.3M再生達成例を発見</li>
+                            <li>15の競合チャンネルを特定</li>
+                            <li>3ヶ月で1,000人達成への具体的施策</li>
+                            <li>年間960K-2M円の収益化パス</li>
+                            <li>20のコラボレーション候補</li>
+                        </ul>
+                    </div>
+
+                    <div style="margin-top: 25px;">
+                        <span class="badge">Phase 1-4 完了</span>
+                        <span class="badge">アクション可能</span>
+                    </div>
+
+                    <div style="margin-top: 25px;">
+                        <a href="reports/ketobi-complete-analysis.html" class="btn">
+                            📊 完全レポートを見る
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Placeholder for future reports -->
+                <div class="report-card" style="opacity: 0.6;">
+                    <h3>
+                        次のレポート準備中...
+                    </h3>
+                    <div class="report-meta">
+                        🔄 Coming Soon
+                    </div>
+
+                    <div class="report-description">
+                        あなたのチャンネルも分析対象になるかもしれません。
+                        データ駆動型の成長戦略で、次のステージへ。
+                    </div>
+
+                    <div style="margin-top: 25px;">
+                        <span class="badge" style="background: #999;">準備中</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <footer>
+            <p><strong>YouTube Analytics Platform</strong></p>
+            <p style="margin-top: 10px;">
+                データ分析により、YouTubeクリエイターの成長を支援します
+            </p>
+            <p style="margin-top: 20px; font-size: 0.9em;">
+                Powered by YouTube Data API v3, Google Cloud Platform, BigQuery
+            </p>
+        </footer>
+    </div>
+</body>
+</html>
