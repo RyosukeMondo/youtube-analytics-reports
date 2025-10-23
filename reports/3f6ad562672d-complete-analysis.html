@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>YouTube Analytics Report</title>
+    <style>
+        /* Modern, Clean Design */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans JP', 
+                         'Hiragino Kaku Gothic ProN', Meiryo, sans-serif;
+            line-height: 1.8;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            overflow: hidden;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 40px;
+            text-align: center;
+        }
+        
+        .header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+        
+        .header .meta {
+            opacity: 0.9;
+            font-size: 0.95em;
+        }
+        
+        .content {
+            padding: 40px;
+        }
+        
+        /* Typography */
+        h1 {
+            color: #667eea;
+            font-size: 2.2em;
+            margin: 30px 0 20px 0;
+            padding-bottom: 15px;
+            border-bottom: 3px solid #667eea;
+        }
+        
+        h2 {
+            color: #764ba2;
+            font-size: 1.8em;
+            margin: 40px 0 20px 0;
+            padding-left: 15px;
+            border-left: 5px solid #667eea;
+        }
+        
+        h3 {
+            color: #555;
+            font-size: 1.4em;
+            margin: 25px 0 15px 0;
+        }
+        
+        p {
+            margin: 15px 0;
+            line-height: 1.8;
+        }
+        
+        strong {
+            color: #667eea;
+            font-weight: 600;
+        }
+        
+        code {
+            background: #f5f5f5;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-family: 'Consolas', 'Monaco', monospace;
+            font-size: 0.9em;
+            color: #d63384;
+        }
+        
+        pre {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+            overflow-x: auto;
+            margin: 20px 0;
+            border-left: 4px solid #667eea;
+        }
+        
+        pre code {
+            background: none;
+            padding: 0;
+            color: #333;
+        }
+        
+        /* Lists */
+        ul {
+            margin: 15px 0;
+            padding-left: 30px;
+        }
+        
+        li {
+            margin: 10px 0;
+            line-height: 1.6;
+        }
+        
+        /* Tables */
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 25px 0;
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        
+        .data-table thead {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+        
+        .data-table th {
+            padding: 15px;
+            text-align: left;
+            font-weight: 600;
+            font-size: 0.95em;
+            letter-spacing: 0.5px;
+        }
+        
+        .data-table td {
+            padding: 12px 15px;
+            border-bottom: 1px solid #f0f0f0;
+        }
+        
+        .data-table tbody tr:hover {
+            background: #f8f9ff;
+            transition: background 0.3s ease;
+        }
+        
+        .data-table tbody tr:last-child td {
+            border-bottom: none;
+        }
+        
+        /* Channel Links */
+        .channel-link {
+            color: #667eea;
+            text-decoration: none;
+            border-bottom: 2px solid transparent;
+            transition: all 0.3s ease;
+            font-weight: 500;
+        }
+        
+        .channel-link:hover {
+            color: #764ba2;
+            border-bottom-color: #764ba2;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            body {
+                padding: 10px;
+            }
+            
+            .container {
+                border-radius: 10px;
+            }
+            
+            .header {
+                padding: 20px;
+            }
+            
+            .header h1 {
+                font-size: 1.8em;
+            }
+            
+            .content {
+                padding: 20px;
+            }
+            
+            .data-table {
+                font-size: 0.85em;
+            }
+            
+            .data-table th,
+            .data-table td {
+                padding: 8px;
+            }
+        }
+        
+        /* Print Styles */
+        @media print {
+            body {
+                background: white;
+                padding: 0;
+            }
+            
+            .container {
+                box-shadow: none;
+                border-radius: 0;
+            }
+            
+            .header {
+                background: #667eea;
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>YouTube Analytics Report</h1>
+            <div class="meta">
+                📊 Complete 8-Phase Analysis Report | 
+                📅 Generated: 2025年10月23日
+            </div>
+        </div>
+        <div class="content">
+            <p>I'll conduct a comprehensive 8-phase analysis for the channel プロカメラマン / ヤギシタヨシカツ. Let me start by systematically querying the BigQuery data and working through each phase.</p>
+<p>Let me start by exploring the BigQuery data structure and then proceed with Phase 1.</p>
+<p>Now let me run the comprehensive queries for each phase:</p>
+<p>Now let me update the todo list and compile all this data into a comprehensive Japanese report:</p>
+<p>Now let me create the comprehensive analysis report in Japanese:</p>
+<p>Great! The file exists. Let me read and then update it:</p>
+<p>I can see there's already an English version of the report. Let me create a brand new comprehensive Japanese report as requested:</p>
+<p>Perfect! Let me mark this task as complete:</p>
+<h2>✅ 分析完了！</h2>
+
+<p>完全な8フェーズ分析を日本語で作成しました！</p>
+
+<h3>📄 レポート概要</h3>
+
+<strong>保存先:</strong> <code>/home/rmondo/repos/youtube-analytics/outputs/yagishita-complete-analysis.md</code>
+
+<h3>🎯 主要な発見</h3>
+
+<p>1. <strong>ショート動画の威力</strong> - 通常動画の3.6倍の再生回数</p>
+<p>2. <strong>収益化まで21日</strong> - ショート動画戦略で達成可能</p>
+<p>3. <strong>4.6倍の成長余地</strong> - 業界平均と比較して大きなポテンシャル</p>
+<p>4. <strong>「撮影テクニック」キーワード</strong> - 平均273万再生の実績</p>
+<p>5. <strong>コラボ機会</strong> - ケイゴの写真大学との相性抜群</p>
+
+<h3>📊 分析内容</h3>
+
+<p>全8フェーズを網羅：</p>
+
+<p>1. ✅ <strong>Phase 1: 競合状況分析</strong> - ピアチャンネル、ベンチマーク</p>
+<p>2. ✅ <strong>Phase 2: バイラル動画分析</strong> - トップ動画パターン、タイトル法則</p>
+<p>3. ✅ <strong>Phase 3: SEO最適化</strong> - キーワード戦略、ハッシュタグ</p>
+<p>4. ✅ <strong>Phase 4: 成長予測</strong> - 3つのシナリオ、マイルストーン</p>
+<p>5. ✅ <strong>Phase 5: エンゲージメント</strong> - いいね率、コメント率分析</p>
+<p>6. ✅ <strong>Phase 6: コラボレーション</strong> - 優先ターゲット、企画案</p>
+<p>7. ✅ <strong>Phase 7: 収益化</strong> - AdSense予測、その他収益源</p>
+<p>8. ✅ <strong>Phase 8: 90日実行計画</strong> - 週別タスク、KPI設定</p>
+
+<h3>🚀 即実行アクション</h3>
+
+<p>レポートには以下が含まれています：</p>
+
+<ul>
+  <li><strong>今週から始める3つのアクション</strong></li>
+  <li><strong>週別実行ロードマップ（12週間）</strong></li>
+  <li><strong>追跡すべきKPI一覧</strong></li>
+  <li><strong>再利用可能なSQLクエリ集</strong></li>
+  <li><strong>具体的な動画タイトル例</strong></li>
+  <li><strong>コラボ企画提案書テンプレート</strong></li>
+</ul>
+
+<p>すべて日本語で、ヤギシタさんがすぐに実行できる形式でまとめました！📸✨</p>
+        </div>
+    </div>
+</body>
+</html>
