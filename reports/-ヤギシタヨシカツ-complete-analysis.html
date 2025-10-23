@@ -2,20 +2,238 @@
 <html lang="ja">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>プロカメラマン / ヤギシタヨシカツ - Complete 8-Phase Analysis Report</title>
     <style>
-        body { font-family: sans-serif; line-height: 1.8; max-width: 1200px; margin: 0 auto; padding: 20px; }
-        h1 { color: #667eea; }
-        h2 { color: #764ba2; border-bottom: 2px solid #667eea; padding-bottom: 10px; }
-        table { border-collapse: collapse; width: 100%; margin: 20px 0; }
-        th, td { border: 1px solid #ddd; padding: 12px; text-align: left; }
-        th { background: #667eea; color: white; }
-        .channel-link { color: #667eea; text-decoration: none; border-bottom: 1px dotted; }
-        .channel-link:hover { color: #764ba2; }
+        /* Modern, Clean Design */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans JP', 
+                         'Hiragino Kaku Gothic ProN', Meiryo, sans-serif;
+            line-height: 1.8;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            overflow: hidden;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 40px;
+            text-align: center;
+        }
+        
+        .header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+        
+        .header .meta {
+            opacity: 0.9;
+            font-size: 0.95em;
+        }
+        
+        .content {
+            padding: 40px;
+        }
+        
+        /* Typography */
+        h1 {
+            color: #667eea;
+            font-size: 2.2em;
+            margin: 30px 0 20px 0;
+            padding-bottom: 15px;
+            border-bottom: 3px solid #667eea;
+        }
+        
+        h2 {
+            color: #764ba2;
+            font-size: 1.8em;
+            margin: 40px 0 20px 0;
+            padding-left: 15px;
+            border-left: 5px solid #667eea;
+        }
+        
+        h3 {
+            color: #555;
+            font-size: 1.4em;
+            margin: 25px 0 15px 0;
+        }
+        
+        p {
+            margin: 15px 0;
+            line-height: 1.8;
+        }
+        
+        strong {
+            color: #667eea;
+            font-weight: 600;
+        }
+        
+        code {
+            background: #f5f5f5;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-family: 'Consolas', 'Monaco', monospace;
+            font-size: 0.9em;
+            color: #d63384;
+        }
+        
+        pre {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+            overflow-x: auto;
+            margin: 20px 0;
+            border-left: 4px solid #667eea;
+        }
+        
+        pre code {
+            background: none;
+            padding: 0;
+            color: #333;
+        }
+        
+        /* Lists */
+        ul {
+            margin: 15px 0;
+            padding-left: 30px;
+        }
+        
+        li {
+            margin: 10px 0;
+            line-height: 1.6;
+        }
+        
+        /* Tables */
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 25px 0;
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        
+        .data-table thead {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+        
+        .data-table th {
+            padding: 15px;
+            text-align: left;
+            font-weight: 600;
+            font-size: 0.95em;
+            letter-spacing: 0.5px;
+        }
+        
+        .data-table td {
+            padding: 12px 15px;
+            border-bottom: 1px solid #f0f0f0;
+        }
+        
+        .data-table tbody tr:hover {
+            background: #f8f9ff;
+            transition: background 0.3s ease;
+        }
+        
+        .data-table tbody tr:last-child td {
+            border-bottom: none;
+        }
+        
+        /* Channel Links */
+        .channel-link {
+            color: #667eea;
+            text-decoration: none;
+            border-bottom: 2px solid transparent;
+            transition: all 0.3s ease;
+            font-weight: 500;
+        }
+        
+        .channel-link:hover {
+            color: #764ba2;
+            border-bottom-color: #764ba2;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            body {
+                padding: 10px;
+            }
+            
+            .container {
+                border-radius: 10px;
+            }
+            
+            .header {
+                padding: 20px;
+            }
+            
+            .header h1 {
+                font-size: 1.8em;
+            }
+            
+            .content {
+                padding: 20px;
+            }
+            
+            .data-table {
+                font-size: 0.85em;
+            }
+            
+            .data-table th,
+            .data-table td {
+                padding: 8px;
+            }
+        }
+        
+        /* Print Styles */
+        @media print {
+            body {
+                background: white;
+                padding: 0;
+            }
+            
+            .container {
+                box-shadow: none;
+                border-radius: 0;
+            }
+            
+            .header {
+                background: #667eea;
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+            }
+        }
     </style>
 </head>
 <body>
-<h1>プロカメラマン / ヤギシタヨシカツ - Complete 8-Phase Analysis Report</h1>
+    <div class="container">
+        <div class="header">
+            <h1>プロカメラマン / ヤギシタヨシカツ - Complete 8-Phase Analysis Report</h1>
+            <div class="meta">
+                📊 Complete 8-Phase Analysis Report | 
+                📅 Generated: 2025年10月23日
+            </div>
+        </div>
+        <div class="content">
+            <h1>プロカメラマン / ヤギシタヨシカツ - Complete 8-Phase Analysis Report</h1>
 
 <strong>Analysis Date:</strong> 2025-10-23
 <strong>Channel:</strong> プロカメラマン / ヤギシタヨシカツ
@@ -32,7 +250,7 @@
 
 <p>2. <strong>Viral Video Opportunity:</strong> Short-form content (14-60 seconds) with practical photography tips generates <strong>17.5M views</strong> on average. The top camera/photography video achieved 17.5M views with a simple "smartphone filming technique" format.</p>
 
-<p>3. <strong>Keyword Formula:</strong> High-performing videos use hashtags: `#撮影テクニック` (2.36M avg views), `#iphone撮影` (4.37M avg views), `#撮影方法` (2.87M avg views). Current channel lacks these viral keywords.</p>
+<p>3. <strong>Keyword Formula:</strong> High-performing videos use hashtags: <code>#撮影テクニック</code> (2.36M avg views), <code>#iphone撮影</code> (4.37M avg views), <code>#撮影方法</code> (2.87M avg views). Current channel lacks these viral keywords.</p>
 
 <p>4. <strong>Monetization Timeline:</strong> Channel needs <strong>3,140 more subscribers</strong> to reach 10K target and is likely already monetized (above 1K threshold). Estimated current watch hours: ~32K hours.</p>
 
@@ -44,28 +262,111 @@
 
 <h3>Peer Channel Benchmarks (5K-20K Subscribers)</h3>
 
-<p>| Channel | Subscribers | Videos | Avg Views/Video | Views/Sub Ratio |</p>
-<p>|---------|-------------|--------|-----------------|-----------------|</p>
-<p>| MEGUチャンネル | 19,400 | 323 | 19,148 | 318.81 |</p>
-<p>| Color and Music【癒しの色と音楽】 | 18,500 | 108 | 51,392 | 300.02 |</p>
-<p>| LOVERS HOLIDAY ラバーズホリデー | 18,000 | 173 | 23,121 | 222.22 |</p>
-<p>| 海旅 -UmiTaVi- | 17,900 | 270 | 18,648 | 281.28 |</p>
-<p>| tabikita -北海道で素敵な思い出を- | 17,100 | 67 | 53,167 | 208.32 |</p>
+<table class="data-table">
+  <thead>
+    <tr>
+      <th>Channel</th>
+      <th>Subscribers</th>
+      <th>Videos</th>
+      <th>Avg Views/Video</th>
+      <th>Views/Sub Ratio</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>MEGUチャンネル</td>
+      <td>19,400</td>
+      <td>323</td>
+      <td>19,148</td>
+      <td>318.81</td>
+    </tr>
+    <tr>
+      <td>Color and Music【癒しの色と音楽】</td>
+      <td>18,500</td>
+      <td>108</td>
+      <td>51,392</td>
+      <td>300.02</td>
+    </tr>
+    <tr>
+      <td>LOVERS HOLIDAY ラバーズホリデー</td>
+      <td>18,000</td>
+      <td>173</td>
+      <td>23,121</td>
+      <td>222.22</td>
+    </tr>
+    <tr>
+      <td>海旅 -UmiTaVi-</td>
+      <td>17,900</td>
+      <td>270</td>
+      <td>18,648</td>
+      <td>281.28</td>
+    </tr>
+    <tr>
+      <td>tabikita -北海道で素敵な思い出を-</td>
+      <td>17,100</td>
+      <td>67</td>
+      <td>53,167</td>
+      <td>208.32</td>
+    </tr>
+  </tbody>
+</table>
 
 <strong>Your Channel Position:</strong>
-<ul><li><strong>Subscribers:</strong> 6,860 (bottom 10% of peer group)</li>
-<li><strong>Videos:</strong> 367 (highest volume - 3x peer average)</li>
-<li><strong>Avg Views/Video:</strong> 5,653 (<strong>64% below peer average</strong>)</li>
-<li><strong>Views/Sub Ratio:</strong> ~183 (competitive, but underutilized)</li>
+<ul>
+  <li><strong>Subscribers:</strong> 6,860 (bottom 10% of peer group)</li>
+  <li><strong>Videos:</strong> 367 (highest volume - 3x peer average)</li>
+  <li><strong>Avg Views/Video:</strong> 5,653 (<strong>64% below peer average</strong>)</li>
+  <li><strong>Views/Sub Ratio:</strong> ~183 (competitive, but underutilized)</li>
+</ul>
 
 <h3>Performance Tier Analysis</h3>
 
-<p>| Tier | Channels | Avg Subs | Avg Videos | Avg Views/Video | Views/Sub |</p>
-<p>|------|----------|----------|------------|-----------------|-----------|</p>
-<p>| Micro (<1K) | 127 | 378 | 63 | 14,554 | 3,323 |</p>
-<p>| <strong>Small (1K-10K)</strong> | <strong>168</strong> | <strong>4,462</strong> | <strong>228</strong> | <strong>33,216</strong> | <strong>496</strong> |</p>
-<p>| Medium (10K-100K) | 249 | 38,687 | 451 | 69,767 | 486 |</p>
-<p>| Large (100K-1M) | 212 | 370,165 | 831 | 394,459 | 610 |</p>
+<table class="data-table">
+  <thead>
+    <tr>
+      <th>Tier</th>
+      <th>Channels</th>
+      <th>Avg Subs</th>
+      <th>Avg Videos</th>
+      <th>Avg Views/Video</th>
+      <th>Views/Sub</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Micro (<1K)</td>
+      <td>127</td>
+      <td>378</td>
+      <td>63</td>
+      <td>14,554</td>
+      <td>3,323</td>
+    </tr>
+    <tr>
+      <td><strong>Small (1K-10K)</strong></td>
+      <td><strong>168</strong></td>
+      <td><strong>4,462</strong></td>
+      <td><strong>228</strong></td>
+      <td><strong>33,216</strong></td>
+      <td><strong>496</strong></td>
+    </tr>
+    <tr>
+      <td>Medium (10K-100K)</td>
+      <td>249</td>
+      <td>38,687</td>
+      <td>451</td>
+      <td>69,767</td>
+      <td>486</td>
+    </tr>
+    <tr>
+      <td>Large (100K-1M)</td>
+      <td>212</td>
+      <td>370,165</td>
+      <td>831</td>
+      <td>394,459</td>
+      <td>610</td>
+    </tr>
+  </tbody>
+</table>
 
 <strong>Key Insights:</strong>
 <p>1. Your channel has <strong>61% more videos</strong> than the Small tier average but gets <strong>83% fewer views per video</strong></p>
@@ -78,23 +379,99 @@
 
 <h3>Top Viral Videos in Photography/Camera Niche</h3>
 
-<p>| Title | Views | Duration | Like Rate | Key Elements |</p>
-<p>|-------|-------|----------|-----------|--------------|</p>
-<p>| 【オススメ】スマホで出来る小物を使った動画の撮り方 | 17.5M | 14s | 1.71% | #shorts #iphone #撮影 #講座 |</p>
-<p>| アメリカの撮り鉄の撮影方法 | 9.7M | 39s | 0.88% | 撮影方法 (unique angle) |</p>
-<p>| 【撮影:Ryota】飲み物を撮影しました！ | 9.3M | 44s | 3.34% | #撮影テクニック #撮影方法 |</p>
-<p>| 【撮影裏技】スマホでダンス動画を超カッコ良く撮る方法 | 9.0M | 48s | 2.16% | #iphone撮影 #撮影テクニック |</p>
-<p>| カオスな映像が撮れるスマホ撮影テクニック | 8.3M | 1m | 2.22% | スマホ撮影テクニック |</p>
+<table class="data-table">
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Views</th>
+      <th>Duration</th>
+      <th>Like Rate</th>
+      <th>Key Elements</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>【オススメ】スマホで出来る小物を使った動画の撮り方</td>
+      <td>17.5M</td>
+      <td>14s</td>
+      <td>1.71%</td>
+      <td>#shorts #iphone #撮影 #講座</td>
+    </tr>
+    <tr>
+      <td>アメリカの撮り鉄の撮影方法</td>
+      <td>9.7M</td>
+      <td>39s</td>
+      <td>0.88%</td>
+      <td>撮影方法 (unique angle)</td>
+    </tr>
+    <tr>
+      <td>【撮影:Ryota】飲み物を撮影しました！</td>
+      <td>9.3M</td>
+      <td>44s</td>
+      <td>3.34%</td>
+      <td>#撮影テクニック #撮影方法</td>
+    </tr>
+    <tr>
+      <td>【撮影裏技】スマホでダンス動画を超カッコ良く撮る方法</td>
+      <td>9.0M</td>
+      <td>48s</td>
+      <td>2.16%</td>
+      <td>#iphone撮影 #撮影テクニック</td>
+    </tr>
+    <tr>
+      <td>カオスな映像が撮れるスマホ撮影テクニック</td>
+      <td>8.3M</td>
+      <td>1m</td>
+      <td>2.22%</td>
+      <td>スマホ撮影テクニック</td>
+    </tr>
+  </tbody>
+</table>
 
 <h3>Viral Formula Pattern Recognition</h3>
 
 <strong>Duration Sweet Spot:</strong>
-<p>| Duration | Avg Views | Like Rate | Comment Rate | Videos |</p>
-<p>|----------|-----------|-----------|--------------|---------|</p>
-<p>| <strong>0-5 min</strong> | <strong>1.8M</strong> | <strong>2.21%</strong> | <strong>0.08%</strong> | <strong>103</strong> |</p>
-<p>| 6-10 min | 171K | 1.20% | 0.10% | 76 |</p>
-<p>| 11-20 min | 159K | 1.26% | 0.12% | 237 |</p>
-<p>| 20+ min | 462K | 1.22% | 0.11% | 293 |</p>
+<table class="data-table">
+  <thead>
+    <tr>
+      <th>Duration</th>
+      <th>Avg Views</th>
+      <th>Like Rate</th>
+      <th>Comment Rate</th>
+      <th>Videos</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>0-5 min</strong></td>
+      <td><strong>1.8M</strong></td>
+      <td><strong>2.21%</strong></td>
+      <td><strong>0.08%</strong></td>
+      <td><strong>103</strong></td>
+    </tr>
+    <tr>
+      <td>6-10 min</td>
+      <td>171K</td>
+      <td>1.20%</td>
+      <td>0.10%</td>
+      <td>76</td>
+    </tr>
+    <tr>
+      <td>11-20 min</td>
+      <td>159K</td>
+      <td>1.26%</td>
+      <td>0.12%</td>
+      <td>237</td>
+    </tr>
+    <tr>
+      <td>20+ min</td>
+      <td>462K</td>
+      <td>1.22%</td>
+      <td>0.11%</td>
+      <td>293</td>
+    </tr>
+  </tbody>
+</table>
 
 <strong>Critical Discovery:</strong> Videos under 5 minutes generate <strong>10.5x more views</strong> than 6-10 minute videos and <strong>11.3x more</strong> than 11-20 minute videos.
 
@@ -103,22 +480,30 @@
 <strong>High-Performing Title Patterns:</strong>
 
 <p>1. <strong>Hook + Technique + Tool Format:</strong></p>
-<p>   - `【撮影裏技】スマホでダンス動画を超カッコ良く撮る方法`</p>
-<p>   - Pattern: 【Hook】Tool + Result + 方法</p>
+<ul>
+  <li><code>【撮影裏技】スマホでダンス動画を超カッコ良く撮る方法</code></li>
+  <li>Pattern: 【Hook】Tool + Result + 方法</li>
+</ul>
 
 <p>2. <strong>Practical How-To:</strong></p>
-<p>   - `【オススメ】スマホで出来る小物を使った動画の撮り方`</p>
-<p>   - Pattern: 【Credibility】Tool + 出来る + 撮り方</p>
+<ul>
+  <li><code>【オススメ】スマホで出来る小物を使った動画の撮り方</code></li>
+  <li>Pattern: 【Credibility】Tool + 出来る + 撮り方</li>
+</ul>
 
 <p>3. <strong>Professional Showcase:</strong></p>
-<p>   - `【撮影:Ryota】飲み物を撮影しました！`</p>
-<p>   - Pattern: 【撮影:Name】Subject + 撮影しました</p>
+<ul>
+  <li><code>【撮影:Ryota】飲み物を撮影しました！</code></li>
+  <li>Pattern: 【撮影:Name】Subject + 撮影しました</li>
+</ul>
 
 <strong>Hashtag Performance:</strong>
-<li>`#撮影テクニック`: 24 occurrences, 2.36M avg views</li>
-<li>`#iphone撮影`: 16 occurrences, 4.37M avg views</li>
-<li>`#撮影方法`: 14 occurrences, 2.87M avg views</li>
-<li>`#カメラ`: 4 occurrences, 1.97M avg views</li>
+<ul>
+  <li><code>#撮影テクニック</code>: 24 occurrences, 2.36M avg views</li>
+  <li><code>#iphone撮影</code>: 16 occurrences, 4.37M avg views</li>
+  <li><code>#撮影方法</code>: 14 occurrences, 2.87M avg views</li>
+  <li><code>#カメラ</code>: 4 occurrences, 1.97M avg views</li>
+</ul>
 
 <p>---</p>
 
@@ -126,47 +511,98 @@
 
 <h3>Top-Performing Keywords (50K+ Views Videos)</h3>
 
-<p>| Keyword | Occurrences | Avg Views | Avg Like Rate |</p>
-<p>|---------|-------------|-----------|---------------|</p>
-<p>| `#iphone撮影` | 16 | 4,370,903 | 2.55% |</p>
-<p>| `#撮影方法` | 14 | 2,873,906 | 2.34% |</p>
-<p>| `#撮影テクニック` | 24 | 2,360,555 | 2.92% |</p>
-<p>| `#カメラ` | 4 | 1,970,308 | 1.61% |</p>
-<p>| `#スマホカメラ` | 3 | 1,396,847 | 1.44% |</p>
-<p>| `leica` | 35 | 292,146 | 1.93% |</p>
-<p>| `sony` | 4 | 362,962 | 2.49% |</p>
+<table class="data-table">
+  <thead>
+    <tr>
+      <th>Keyword</th>
+      <th>Occurrences</th>
+      <th>Avg Views</th>
+      <th>Avg Like Rate</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>#iphone撮影</code></td>
+      <td>16</td>
+      <td>4,370,903</td>
+      <td>2.55%</td>
+    </tr>
+    <tr>
+      <td><code>#撮影方法</code></td>
+      <td>14</td>
+      <td>2,873,906</td>
+      <td>2.34%</td>
+    </tr>
+    <tr>
+      <td><code>#撮影テクニック</code></td>
+      <td>24</td>
+      <td>2,360,555</td>
+      <td>2.92%</td>
+    </tr>
+    <tr>
+      <td><code>#カメラ</code></td>
+      <td>4</td>
+      <td>1,970,308</td>
+      <td>1.61%</td>
+    </tr>
+    <tr>
+      <td><code>#スマホカメラ</code></td>
+      <td>3</td>
+      <td>1,396,847</td>
+      <td>1.44%</td>
+    </tr>
+    <tr>
+      <td><code>leica</code></td>
+      <td>35</td>
+      <td>292,146</td>
+      <td>1.93%</td>
+    </tr>
+    <tr>
+      <td><code>sony</code></td>
+      <td>4</td>
+      <td>362,962</td>
+      <td>2.49%</td>
+    </tr>
+  </tbody>
+</table>
 
 <h3>SEO Strategy Recommendations</h3>
 
 <strong>1. Title Optimization Formula:</strong>
-<p>```</p>
+<p>``<code></p>
 <p>[Hook] + [Tool/Camera] + [Specific Result] + [Method] + [3-5 Hashtags]</p>
 
 <p>Examples:</p>
 <p>✅ 【プロ直伝】LEICAで街スナップを劇的に変える撮影テクニック #LEICA #撮影テクニック #カメラ #写真</p>
 <p>✅ 【初心者必見】スマホで出来るプロ級の商品撮影方法 #iphone撮影 #撮影方法 #撮影テクニック</p>
 <p>❌ LEICA M11の使い方 (too generic, no hooks, no hashtags)</p>
-<p>```</p>
+</code>`<code>
 
 <strong>2. Content Positioning:</strong>
-<li>Shift from "プロの視点" (exclusive) to "プロ直伝" (accessible)</li>
-<li>Emphasize "初心者でもできる" angle</li>
-<li>Use concrete results: "劇的に変える", "超カッコ良く", "プロ級"</li>
+<ul>
+  <li>Shift from "プロの視点" (exclusive) to "プロ直伝" (accessible)</li>
+  <li>Emphasize "初心者でもできる" angle</li>
+  <li>Use concrete results: "劇的に変える", "超カッコ良く", "プロ級"</li>
+</ul>
 
 <strong>3. Thumbnail Strategy (Qualitative):</strong>
 <p>Based on viral videos analysis:</p>
-<li>Before/After split screens</li>
-<li>Large, bold Japanese text overlay</li>
-<li>Bright, high-contrast colors</li>
-<li>Close-up of equipment or result</li>
-<li>Surprised/excited facial expressions</li>
+<ul>
+  <li>Before/After split screens</li>
+  <li>Large, bold Japanese text overlay</li>
+  <li>Bright, high-contrast colors</li>
+  <li>Close-up of equipment or result</li>
+  <li>Surprised/excited facial expressions</li>
+</ul>
 
 <strong>4. Hashtag Stack (Must-Use):</strong>
 <p>Every video should include:</p>
-<li>Primary: `#撮影テクニック` OR `#撮影方法`</li>
-<li>Tool-specific: `#iphone撮影` OR `#カメラ`</li>
-<li>Niche: `#LEICA` OR `#写真` OR `#プロカメラマン`</li>
-<li>Discovery: `#shorts` (for <60s videos)</li>
+<ul>
+  <li>Primary: </code>#撮影テクニック<code> OR </code>#撮影方法<code></li>
+  <li>Tool-specific: </code>#iphone撮影<code> OR </code>#カメラ<code></li>
+  <li>Niche: </code>#LEICA<code> OR </code>#写真<code> OR </code>#プロカメラマン<code></li>
+  <li>Discovery: </code>#shorts<code> (for <60s videos)</li>
+</ul>
 
 <p>---</p>
 
@@ -174,67 +610,151 @@
 
 <h3>Fast-Growing Channel Benchmarks (7K-15K Subs)</h3>
 
-<p>| Channel | Subs | Videos | Subs/Day | Days to Create | Avg Views/Video |</p>
-<p>|---------|------|--------|----------|----------------|-----------------|</p>
-<p>| ニッポンのココがツボらしい。 | 12,600 | 142 | 26.42 | 477 | 227,129 |</p>
-<p>| フクロウの旅案内 | 9,980 | 304 | 21.32 | 468 | 32,338 |</p>
-<p>| おーけー夫婦の旅 | 14,200 | 72 | 17.91 | 793 | 5,825 |</p>
-<p>| FUFU-WO-NOZOKIMI | 9,260 | 62 | 16.05 | 577 | 9,850 |</p>
-<p>| スパイシーサワー | 7,050 | 95 | 12.30 | 573 | 15,277 |</p>
+<table class="data-table">
+  <thead>
+    <tr>
+      <th>Channel</th>
+      <th>Subs</th>
+      <th>Videos</th>
+      <th>Subs/Day</th>
+      <th>Days to Create</th>
+      <th>Avg Views/Video</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>ニッポンのココがツボらしい。</td>
+      <td>12,600</td>
+      <td>142</td>
+      <td>26.42</td>
+      <td>477</td>
+      <td>227,129</td>
+    </tr>
+    <tr>
+      <td>フクロウの旅案内</td>
+      <td>9,980</td>
+      <td>304</td>
+      <td>21.32</td>
+      <td>468</td>
+      <td>32,338</td>
+    </tr>
+    <tr>
+      <td>おーけー夫婦の旅</td>
+      <td>14,200</td>
+      <td>72</td>
+      <td>17.91</td>
+      <td>793</td>
+      <td>5,825</td>
+    </tr>
+    <tr>
+      <td>FUFU-WO-NOZOKIMI</td>
+      <td>9,260</td>
+      <td>62</td>
+      <td>16.05</td>
+      <td>577</td>
+      <td>9,850</td>
+    </tr>
+    <tr>
+      <td>スパイシーサワー</td>
+      <td>7,050</td>
+      <td>95</td>
+      <td>12.30</td>
+      <td>573</td>
+      <td>15,277</td>
+    </tr>
+  </tbody>
+</table>
 
 <h3>Growth Projections for プロカメラマン / ヤギシタヨシカツ</h3>
 
 <strong>Current Growth Rate:</strong> ~5 subs/day (estimated based on 6,860 subs)
 
 <strong>Scenario 1: Conservative (Maintain Current Strategy)</strong>
-<li>Timeline: <strong>627 days</strong> (~21 months) to reach 10,000 subs</li>
-<li>Required: Continue posting at current rate</li>
-<li>Risk: High - YouTube algorithm may deprioritize low-performing content</li>
+<ul>
+  <li>Timeline: <strong>627 days</strong> (~21 months) to reach 10,000 subs</li>
+  <li>Required: Continue posting at current rate</li>
+  <li>Risk: High - YouTube algorithm may deprioritize low-performing content</li>
+</ul>
 
 <strong>Scenario 2: Moderate Optimization (Improve Titles + Hashtags)</strong>
-<li>Timeline: <strong>200 days</strong> (~6.5 months) to reach 10,000 subs</li>
-<li>Required:</li>
-<p>  - Add viral hashtags to all new videos</p>
-<p>  - Optimize titles using proven formulas</p>
-<p>  - Maintain 2-3 videos/week cadence</p>
-<li>Growth rate: ~15.7 subs/day</li>
-<li><strong>Most Realistic Path</strong></li>
+<ul>
+  <li>Timeline: <strong>200 days</strong> (~6.5 months) to reach 10,000 subs</li>
+  <li>Required:</li>
+  <li>Add viral hashtags to all new videos</li>
+  <li>Optimize titles using proven formulas</li>
+  <li>Maintain 2-3 videos/week cadence</li>
+  <li>Growth rate: ~15.7 subs/day</li>
+  <li><strong>Most Realistic Path</strong></li>
+</ul>
 
 <strong>Scenario 3: Aggressive (Shorts Strategy)</strong>
-<li>Timeline: <strong>90-120 days</strong> (~3-4 months) to reach 10,000 subs</li>
-<li>Required:</li>
-<p>  - Publish 3-5 Shorts/week (<60s)</p>
-<p>  - Focus on viral hashtags: #撮影テクニック #iphone撮影</p>
-<p>  - Repurpose existing long-form content into Shorts</p>
-<p>  - Create "hook in first 3 seconds" content</p>
-<li>Growth rate: ~26-35 subs/day</li>
-<li><strong>High Risk, High Reward</strong></li>
+<ul>
+  <li>Timeline: <strong>90-120 days</strong> (~3-4 months) to reach 10,000 subs</li>
+  <li>Required:</li>
+  <li>Publish 3-5 Shorts/week (<60s)</li>
+  <li>Focus on viral hashtags: #撮影テクニック #iphone撮影</li>
+  <li>Repurpose existing long-form content into Shorts</li>
+  <li>Create "hook in first 3 seconds" content</li>
+  <li>Growth rate: ~26-35 subs/day</li>
+  <li><strong>High Risk, High Reward</strong></li>
+</ul>
 
 <h3>Growth Accelerators</h3>
 
 <p>1. <strong>Viral Video Multiplier:</strong></p>
-<p>   - One 100K+ view video = +500-1,000 subscribers</p>
-<p>   - One 1M+ view video = +5,000-10,000 subscribers</p>
-<p>   - Current probability: 0% (no viral content strategy)</p>
-<p>   - Optimized probability: 5-10% per Short</p>
+<ul>
+  <li>One 100K+ view video = +500-1,000 subscribers</li>
+  <li>One 1M+ view video = +5,000-10,000 subscribers</li>
+  <li>Current probability: 0% (no viral content strategy)</li>
+  <li>Optimized probability: 5-10% per Short</li>
+</ul>
 
 <p>2. <strong>Collaboration Boost:</strong></p>
-<p>   - Average subscriber overlap: 15-25%</p>
-<p>   - One collaboration with 40K channel = +6,000-10,000 potential reach</p>
-<p>   - Subscriber conversion: 2-5% = +120-500 subscribers</p>
+<ul>
+  <li>Average subscriber overlap: 15-25%</li>
+  <li>One collaboration with 40K channel = +6,000-10,000 potential reach</li>
+  <li>Subscriber conversion: 2-5% = +120-500 subscribers</li>
+</ul>
 
 <p>3. <strong>Algorithm Momentum:</strong></p>
-<p>   - 3 consecutive videos with >20K views triggers recommendation boost</p>
-<p>   - Typical multiplier: 2-3x on next 5-10 videos</p>
+<ul>
+  <li>3 consecutive videos with >20K views triggers recommendation boost</li>
+  <li>Typical multiplier: 2-3x on next 5-10 videos</li>
+</ul>
 
 <h3>Milestone Targets</h3>
 
-<p>| Date | Target Subs | Key Actions |</p>
-<p>|------|-------------|-------------|</p>
-<p>| <strong>Month 1</strong> | 7,500 (+640) | Launch Shorts strategy, optimize all new uploads |</p>
-<p>| <strong>Month 2</strong> | 8,200 (+700) | First collaboration, analyze top performer |</p>
-<p>| <strong>Month 3</strong> | 9,000 (+800) | Double down on viral format, increase Shorts to 5/week |</p>
-<p>| <strong>Month 4-6</strong> | <strong>10,000</strong> (+1,000) | Maintain momentum, expand to 2nd collaboration |</p>
+<table class="data-table">
+  <thead>
+    <tr>
+      <th>Date</th>
+      <th>Target Subs</th>
+      <th>Key Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>Month 1</strong></td>
+      <td>7,500 (+640)</td>
+      <td>Launch Shorts strategy, optimize all new uploads</td>
+    </tr>
+    <tr>
+      <td><strong>Month 2</strong></td>
+      <td>8,200 (+700)</td>
+      <td>First collaboration, analyze top performer</td>
+    </tr>
+    <tr>
+      <td><strong>Month 3</strong></td>
+      <td>9,000 (+800)</td>
+      <td>Double down on viral format, increase Shorts to 5/week</td>
+    </tr>
+    <tr>
+      <td><strong>Month 4-6</strong></td>
+      <td><strong>10,000</strong> (+1,000)</td>
+      <td>Maintain momentum, expand to 2nd collaboration</td>
+    </tr>
+  </tbody>
+</table>
 
 <p>---</p>
 
@@ -242,40 +762,88 @@
 
 <h3>Engagement Metrics by View Tier</h3>
 
-<p>| View Bucket | Videos | Avg Like Rate | Avg Comment Rate | Avg Likes | Avg Comments |</p>
-<p>|-------------|--------|---------------|------------------|-----------|--------------|</p>
-<p>| <1K views | 26 | <strong>2.41%</strong> | <strong>1.23%</strong> | 5 | 1 |</p>
-<p>| 1K-10K views | 156 | 1.48% | 0.20% | 114 | 12 |</p>
-<p>| 10K-100K views | 478 | 1.30% | 0.11% | 417 | 33 |</p>
-<p>| <strong>100K+ views</strong> | <strong>450</strong> | <strong>1.66%</strong> | <strong>0.07%</strong> | <strong>34,085</strong> | <strong>516</strong> |</p>
+<table class="data-table">
+  <thead>
+    <tr>
+      <th>View Bucket</th>
+      <th>Videos</th>
+      <th>Avg Like Rate</th>
+      <th>Avg Comment Rate</th>
+      <th>Avg Likes</th>
+      <th>Avg Comments</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><1K views</td>
+      <td>26</td>
+      <td><strong>2.41%</strong></td>
+      <td><strong>1.23%</strong></td>
+      <td>5</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <td>1K-10K views</td>
+      <td>156</td>
+      <td>1.48%</td>
+      <td>0.20%</td>
+      <td>114</td>
+      <td>12</td>
+    </tr>
+    <tr>
+      <td>10K-100K views</td>
+      <td>478</td>
+      <td>1.30%</td>
+      <td>0.11%</td>
+      <td>417</td>
+      <td>33</td>
+    </tr>
+    <tr>
+      <td><strong>100K+ views</strong></td>
+      <td><strong>450</strong></td>
+      <td><strong>1.66%</strong></td>
+      <td><strong>0.07%</strong></td>
+      <td><strong>34,085</strong></td>
+      <td><strong>516</strong></td>
+    </tr>
+  </tbody>
+</table>
 
 <h3>Key Engagement Insights</h3>
 
 <strong>1. Like Rate Paradox:</strong>
-<li>Smaller videos (<1K) have HIGHER like rates (2.41%) than viral videos (1.66%)</li>
-<li>Reason: More engaged niche audience vs. casual viral viewers</li>
-<li><strong>Action:</strong> Focus on sustaining 2%+ like rate even as views scale</li>
+<ul>
+  <li>Smaller videos (<1K) have HIGHER like rates (2.41%) than viral videos (1.66%)</li>
+  <li>Reason: More engaged niche audience vs. casual viral viewers</li>
+  <li><strong>Action:</strong> Focus on sustaining 2%+ like rate even as views scale</li>
+</ul>
 
 <strong>2. Comment Rate Decline:</strong>
-<li>Comment rate drops as videos go viral (1.23% → 0.07%)</li>
-<li>This is NORMAL and healthy</li>
-<li><strong>Action:</strong> Pin questions/CTAs to maintain engagement at scale</li>
+<ul>
+  <li>Comment rate drops as videos go viral (1.23% → 0.07%)</li>
+  <li>This is NORMAL and healthy</li>
+  <li><strong>Action:</strong> Pin questions/CTAs to maintain engagement at scale</li>
+</ul>
 
 <strong>3. Engagement Benchmarks for Your Channel:</strong>
 
 <p>Target metrics for プロカメラマン content:</p>
-<li><strong>Like Rate:</strong> 2.0-2.5% (current camera niche average)</li>
-<li><strong>Comment Rate:</strong> 0.10-0.15% (10K-100K view tier)</li>
-<li><strong>CTR (Estimated):</strong> 4-6% for Shorts, 2-4% for long-form</li>
-<li><strong>Retention:</strong> 50%+ for Shorts, 30-40% for long-form</li>
+<ul>
+  <li><strong>Like Rate:</strong> 2.0-2.5% (current camera niche average)</li>
+  <li><strong>Comment Rate:</strong> 0.10-0.15% (10K-100K view tier)</li>
+  <li><strong>CTR (Estimated):</strong> 4-6% for Shorts, 2-4% for long-form</li>
+  <li><strong>Retention:</strong> 50%+ for Shorts, 30-40% for long-form</li>
+</ul>
 
 <strong>4. Community Building Strategy:</strong>
 
 <p>Current state: Low engagement due to low visibility</p>
-<li>Add pinned comment asking for gear recommendations</li>
-<li>Create polls: "Which camera should I review next? LEICA/SONY/Canon"</li>
-<li>End-screen CTA: "Comment your biggest photography struggle"</li>
-<li>Series format: "7-Day Photography Challenge" to drive repeat engagement</li>
+<ul>
+  <li>Add pinned comment asking for gear recommendations</li>
+  <li>Create polls: "Which camera should I review next? LEICA/SONY/Canon"</li>
+  <li>End-screen CTA: "Comment your biggest photography struggle"</li>
+  <li>Series format: "7-Day Photography Challenge" to drive repeat engagement</li>
+</ul>
 
 <p>---</p>
 
@@ -283,15 +851,68 @@
 
 <h3>Priority Collaboration Targets (Camera/Photography Niche)</h3>
 
-<p>| Rank | Channel | Subs | Avg Views/Video | Collaboration Fit |</p>
-<p>|------|---------|------|-----------------|-------------------|</p>
-<p>| 🥇 <strong>#1</strong> | <strong>ケイゴの写真大学</strong> | 38,800 | 41,103 | <strong>PERFECT</strong> - Similar teaching style, overlapping LEICA audience |</p>
-<p>| 🥈 <strong>#2</strong> | <strong>スマキンロイド【Smakinroid】</strong> | 40,200 | 106,718 | <strong>EXCELLENT</strong> - Smartphone focus, viral potential |</p>
-<p>| 🥉 <strong>#3</strong> | <strong>Nagisa Ichikawa</strong> | 42,000 | 17,670 | <strong>GOOD</strong> - Photography focus, established audience |</p>
-<p>| 4 | Paul Takes Photos | 10,600 | 16,003 | <strong>GOOD</strong> - Similar size, bilingual content potential |</p>
-<p>| 5 | だーかい | 9,050 | 100,323 | <strong>EXCELLENT</strong> - High engagement, similar growth stage |</p>
-<p>| 6 | SO-P / そーぴー | 8,540 | 14,052 | <strong>GOOD</strong> - Similar subscriber count, peer collaboration |</p>
-<p>| 7 | Enter-log「えんたログ」 | 6,960 | 20,588 | <strong>EXCELLENT</strong> - Near-identical size, high synergy |</p>
+<table class="data-table">
+  <thead>
+    <tr>
+      <th>Rank</th>
+      <th>Channel</th>
+      <th>Subs</th>
+      <th>Avg Views/Video</th>
+      <th>Collaboration Fit</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>🥇 <strong>#1</strong></td>
+      <td><strong>ケイゴの写真大学</strong></td>
+      <td>38,800</td>
+      <td>41,103</td>
+      <td><strong>PERFECT</strong> - Similar teaching style, overlapping LEICA audience</td>
+    </tr>
+    <tr>
+      <td>🥈 <strong>#2</strong></td>
+      <td><strong>スマキンロイド【Smakinroid】</strong></td>
+      <td>40,200</td>
+      <td>106,718</td>
+      <td><strong>EXCELLENT</strong> - Smartphone focus, viral potential</td>
+    </tr>
+    <tr>
+      <td>🥉 <strong>#3</strong></td>
+      <td><strong>Nagisa Ichikawa</strong></td>
+      <td>42,000</td>
+      <td>17,670</td>
+      <td><strong>GOOD</strong> - Photography focus, established audience</td>
+    </tr>
+    <tr>
+      <td>4</td>
+      <td>Paul Takes Photos</td>
+      <td>10,600</td>
+      <td>16,003</td>
+      <td><strong>GOOD</strong> - Similar size, bilingual content potential</td>
+    </tr>
+    <tr>
+      <td>5</td>
+      <td>だーかい</td>
+      <td>9,050</td>
+      <td>100,323</td>
+      <td><strong>EXCELLENT</strong> - High engagement, similar growth stage</td>
+    </tr>
+    <tr>
+      <td>6</td>
+      <td>SO-P / そーぴー</td>
+      <td>8,540</td>
+      <td>14,052</td>
+      <td><strong>GOOD</strong> - Similar subscriber count, peer collaboration</td>
+    </tr>
+    <tr>
+      <td>7</td>
+      <td>Enter-log「えんたログ」</td>
+      <td>6,960</td>
+      <td>20,588</td>
+      <td><strong>EXCELLENT</strong> - Near-identical size, high synergy</td>
+    </tr>
+  </tbody>
+</table>
 
 <h3>Collaboration Strategy Framework</h3>
 
@@ -302,7 +923,7 @@
 
 <strong>Phase 2: Value Proposition (Week 3)</strong>
 <p>Send collaboration proposal:</p>
-<p>```</p>
+</code>`<code>
 <p>Subject: コラボ企画のご提案 - カメラ系YouTuber同士のコラボレーション</p>
 
 <p>〇〇様</p>
@@ -315,41 +936,51 @@
 <p>つきましては、以下のようなコラボ企画をご提案させていただきたく存じます：</p>
 
 <p>【企画案】</p>
-<li>「プロvsアマチュア」撮影対決</li>
-<li>同じ被写体を異なるカメラで撮影比較（LEICA vs SONY等）</li>
-<li>お互いのチャンネルでクロス投稿</li>
+<ul>
+  <li>「プロvsアマチュア」撮影対決</li>
+  <li>同じ被写体を異なるカメラで撮影比較（LEICA vs SONY等）</li>
+  <li>お互いのチャンネルでクロス投稿</li>
+</ul>
 
 <p>お互いの視聴者に新しい価値を提供できる企画になるかと思います。</p>
 <p>ご検討いただけますと幸いです。</p>
 
 <p>よろしくお願いいたします。</p>
 <p>ヤギシタヨシカツ</p>
-<p>```</p>
+</code>`<code>
 
 <strong>Phase 3: Collaboration Formats</strong>
 
 <p>1. <strong>Camera Comparison Challenge</strong></p>
-<p>   - Each creator uses their signature camera</p>
-<p>   - Same location, same subject</p>
-<p>   - Viewers vote on best shots</p>
-<p>   - Cross-post on both channels</p>
+<ul>
+  <li>Each creator uses their signature camera</li>
+  <li>Same location, same subject</li>
+  <li>Viewers vote on best shots</li>
+  <li>Cross-post on both channels</li>
+</ul>
 
 <p>2. <strong>Technique Swap</strong></p>
-<p>   - Each creator teaches their specialty</p>
-<p>   - You: Professional LEICA techniques</p>
-<p>   - Partner: Smartphone hacks or editing tricks</p>
-<p>   - 2-part series</p>
+<ul>
+  <li>Each creator teaches their specialty</li>
+  <li>You: Professional LEICA techniques</li>
+  <li>Partner: Smartphone hacks or editing tricks</li>
+  <li>2-part series</li>
+</ul>
 
 <p>3. <strong>Gear Review Collab</strong></p>
-<p>   - Joint review of new camera release</p>
-<p>   - Different perspectives (pro vs enthusiast)</p>
-<p>   - Higher SEO value</p>
+<ul>
+  <li>Joint review of new camera release</li>
+  <li>Different perspectives (pro vs enthusiast)</li>
+  <li>Higher SEO value</li>
+</ul>
 
 <h3>Expected Results</h3>
 
-<li><strong>Subscriber Gain:</strong> 300-800 subscribers per collaboration</li>
-<li><strong>View Boost:</strong> 2-3x normal views on collaboration video</li>
-<li><strong>Long-term:</strong> Algorithm boost from increased engagement</li>
+<ul>
+  <li><strong>Subscriber Gain:</strong> 300-800 subscribers per collaboration</li>
+  <li><strong>View Boost:</strong> 2-3x normal views on collaboration video</li>
+  <li><strong>Long-term:</strong> Algorithm boost from increased engagement</li>
+</ul>
 
 <p>---</p>
 
@@ -362,10 +993,12 @@
 <p>❓ <strong>4,000 watch hours (past 12 months)</strong> - LIKELY ACHIEVED</p>
 
 <strong>Estimated Watch Hours Calculation:</strong>
-<li>367 videos × 5,653 avg views = 2,074,651 total views</li>
-<li>Assuming 40% retention on 10-min avg video = 4 min watch time</li>
-<li>2,074,651 × 4 min = 8,298,604 minutes = <strong>138,310 hours</strong></li>
-<li>Past 12 months estimate: ~30% of total = <strong>41,493 hours</strong></li>
+<ul>
+  <li>367 videos × 5,653 avg views = 2,074,651 total views</li>
+  <li>Assuming 40% retention on 10-min avg video = 4 min watch time</li>
+  <li>2,074,651 × 4 min = 8,298,604 minutes = <strong>138,310 hours</strong></li>
+  <li>Past 12 months estimate: ~30% of total = <strong>41,493 hours</strong></li>
+</ul>
 
 <strong>Status: ELIGIBLE FOR MONETIZATION</strong> (if not already monetized)
 
@@ -373,72 +1006,184 @@
 
 <strong>Current State (6,860 subs, 5,653 avg views/video):</strong>
 
-<p>| Revenue Stream | Monthly Estimate | Annual Estimate | Notes |</p>
-<p>|----------------|------------------|-----------------|-------|</p>
-<p>| AdSense (RPM: ¥200-400) | ¥40,000-80,000 | ¥480,000-960,000 | Based on 8-10 videos/month |</p>
-<p>| Affiliate (Camera gear) | ¥20,000-50,000 | ¥240,000-600,000 | 2-5% conversion on gear links |</p>
-<p>| Sponsorships | ¥0-30,000 | ¥0-360,000 | Small brand deals |</p>
-<p>| <strong>TOTAL</strong> | <strong>¥60,000-160,000</strong> | <strong>¥720,000-1,920,000</strong> | <strong>Conservative estimate</strong> |</p>
+<table class="data-table">
+  <thead>
+    <tr>
+      <th>Revenue Stream</th>
+      <th>Monthly Estimate</th>
+      <th>Annual Estimate</th>
+      <th>Notes</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>AdSense (RPM: ¥200-400)</td>
+      <td>¥40,000-80,000</td>
+      <td>¥480,000-960,000</td>
+      <td>Based on 8-10 videos/month</td>
+    </tr>
+    <tr>
+      <td>Affiliate (Camera gear)</td>
+      <td>¥20,000-50,000</td>
+      <td>¥240,000-600,000</td>
+      <td>2-5% conversion on gear links</td>
+    </tr>
+    <tr>
+      <td>Sponsorships</td>
+      <td>¥0-30,000</td>
+      <td>¥0-360,000</td>
+      <td>Small brand deals</td>
+    </tr>
+    <tr>
+      <td><strong>TOTAL</strong></td>
+      <td><strong>¥60,000-160,000</strong></td>
+      <td><strong>¥720,000-1,920,000</strong></td>
+      <td><strong>Conservative estimate</strong></td>
+    </tr>
+  </tbody>
+</table>
 
 <strong>Optimized State (10,000 subs, 25,000 avg views/video):</strong>
 
-<p>| Revenue Stream | Monthly Estimate | Annual Estimate | Notes |</p>
-<p>|----------------|------------------|-----------------|-------|</p>
-<p>| AdSense (RPM: ¥300-500) | ¥225,000-375,000 | ¥2,700,000-4,500,000 | 30 videos/month (Shorts boost) |</p>
-<p>| Affiliate (Camera gear) | ¥100,000-200,000 | ¥1,200,000-2,400,000 | Better placement, more traffic |</p>
-<p>| Sponsorships | ¥50,000-150,000 | ¥600,000-1,800,000 | Monthly brand deals |</p>
-<p>| Online Course/Workshop | ¥50,000-100,000 | ¥600,000-1,200,000 | "プロの撮影テクニック講座" |</p>
-<p>| <strong>TOTAL</strong> | <strong>¥425,000-825,000</strong> | <strong>¥5,100,000-9,900,000</strong> | <strong>7-12x increase</strong> |</p>
+<table class="data-table">
+  <thead>
+    <tr>
+      <th>Revenue Stream</th>
+      <th>Monthly Estimate</th>
+      <th>Annual Estimate</th>
+      <th>Notes</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>AdSense (RPM: ¥300-500)</td>
+      <td>¥225,000-375,000</td>
+      <td>¥2,700,000-4,500,000</td>
+      <td>30 videos/month (Shorts boost)</td>
+    </tr>
+    <tr>
+      <td>Affiliate (Camera gear)</td>
+      <td>¥100,000-200,000</td>
+      <td>¥1,200,000-2,400,000</td>
+      <td>Better placement, more traffic</td>
+    </tr>
+    <tr>
+      <td>Sponsorships</td>
+      <td>¥50,000-150,000</td>
+      <td>¥600,000-1,800,000</td>
+      <td>Monthly brand deals</td>
+    </tr>
+    <tr>
+      <td>Online Course/Workshop</td>
+      <td>¥50,000-100,000</td>
+      <td>¥600,000-1,200,000</td>
+      <td>"プロの撮影テクニック講座"</td>
+    </tr>
+    <tr>
+      <td><strong>TOTAL</strong></td>
+      <td><strong>¥425,000-825,000</strong></td>
+      <td><strong>¥5,100,000-9,900,000</strong></td>
+      <td><strong>7-12x increase</strong></td>
+    </tr>
+  </tbody>
+</table>
 
 <h3>Monetization Optimization Strategies</h3>
 
 <strong>1. Maximize AdSense RPM:</strong>
-<li>Target high-CPM keywords: "カメラ購入", "LEICA レビュー", "プロ機材"</li>
-<li>Longer videos (8-12 min) with mid-roll ads</li>
-<li>Focus on camera review/buying guide content (highest RPM)</li>
+<ul>
+  <li>Target high-CPM keywords: "カメラ購入", "LEICA レビュー", "プロ機材"</li>
+  <li>Longer videos (8-12 min) with mid-roll ads</li>
+  <li>Focus on camera review/buying guide content (highest RPM)</li>
+</ul>
 
 <strong>2. Affiliate Revenue:</strong>
 
 <p>High-Converting Affiliate Programs:</p>
-<li><strong>Amazon Associates:</strong> Camera bodies, lenses, accessories</li>
-<li><strong>Yodobashi:</strong> Japanese electronics affiliate</li>
-<li><strong>Rakuten:</strong> General photography gear</li>
+<ul>
+  <li><strong>Amazon Associates:</strong> Camera bodies, lenses, accessories</li>
+  <li><strong>Yodobashi:</strong> Japanese electronics affiliate</li>
+  <li><strong>Rakuten:</strong> General photography gear</li>
+</ul>
 
 <p>Strategy:</p>
-<li>Add affiliate links in description of EVERY video</li>
-<li>Create "My Gear" page on channel</li>
-<li>Monthly "Best Camera Deals" video</li>
+<ul>
+  <li>Add affiliate links in description of EVERY video</li>
+  <li>Create "My Gear" page on channel</li>
+  <li>Monthly "Best Camera Deals" video</li>
+</ul>
 
 <strong>3. Sponsorship Readiness:</strong>
 
 <p>Target Sponsors:</p>
-<li>Camera manufacturers: LEICA, SONY, Canon, Fujifilm</li>
-<li>Photography software: Adobe, Capture One</li>
-<li>Tripod/accessories: Peak Design, Manfrotto</li>
-<li>Online photo printing: Photoback, Tolot</li>
+<ul>
+  <li>Camera manufacturers: LEICA, SONY, Canon, Fujifilm</li>
+  <li>Photography software: Adobe, Capture One</li>
+  <li>Tripod/accessories: Peak Design, Manfrotto</li>
+  <li>Online photo printing: Photoback, Tolot</li>
+</ul>
 
 <p>Pitch preparation:</p>
-<li>Create media kit with stats</li>
-<li>Highlight professional photographer credentials</li>
-<li>Offer product review + Instagram cross-promotion</li>
+<ul>
+  <li>Create media kit with stats</li>
+  <li>Highlight professional photographer credentials</li>
+  <li>Offer product review + Instagram cross-promotion</li>
+</ul>
 
 <strong>4. Digital Products:</strong>
 
-<li><strong>Online Course:</strong> "プロカメラマンが教えるLEICA完全マスター講座" (¥19,800)</li>
-<li><strong>LUTs/Presets:</strong> LEICA color grading presets (¥2,980)</li>
-<li><strong>eBook:</strong> "初心者から始めるプロ級撮影テクニック50選" (¥1,980)</li>
-<li><strong>1-on-1 Consultation:</strong> Photo critique service (¥15,000/hour)</li>
+<ul>
+  <li><strong>Online Course:</strong> "プロカメラマンが教えるLEICA完全マスター講座" (¥19,800)</li>
+  <li><strong>LUTs/Presets:</strong> LEICA color grading presets (¥2,980)</li>
+  <li><strong>eBook:</strong> "初心者から始めるプロ級撮影テクニック50選" (¥1,980)</li>
+  <li><strong>1-on-1 Consultation:</strong> Photo critique service (¥15,000/hour)</li>
+</ul>
 
 <h3>Path to ¥1M Monthly Revenue</h3>
 
 <strong>Timeline: 12-18 months</strong>
 
-<p>| Milestone | Subs | Avg Views | Monthly Revenue | Key Strategy |</p>
-<p>|-----------|------|-----------|-----------------|--------------|</p>
-<p>| Current | 6,860 | 5,653 | ¥60K-160K | Basic AdSense |</p>
-<p>| +3 months | 10,000 | 15,000 | ¥200K-350K | Shorts boost + affiliates |</p>
-<p>| +6 months | 18,000 | 35,000 | ¥450K-650K | First sponsorships |</p>
-<p>| +12 months | 35,000 | 60,000 | ¥850K-1.2M | Course launch + recurring sponsors |</p>
+<table class="data-table">
+  <thead>
+    <tr>
+      <th>Milestone</th>
+      <th>Subs</th>
+      <th>Avg Views</th>
+      <th>Monthly Revenue</th>
+      <th>Key Strategy</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Current</td>
+      <td>6,860</td>
+      <td>5,653</td>
+      <td>¥60K-160K</td>
+      <td>Basic AdSense</td>
+    </tr>
+    <tr>
+      <td>+3 months</td>
+      <td>10,000</td>
+      <td>15,000</td>
+      <td>¥200K-350K</td>
+      <td>Shorts boost + affiliates</td>
+    </tr>
+    <tr>
+      <td>+6 months</td>
+      <td>18,000</td>
+      <td>35,000</td>
+      <td>¥450K-650K</td>
+      <td>First sponsorships</td>
+    </tr>
+    <tr>
+      <td>+12 months</td>
+      <td>35,000</td>
+      <td>60,000</td>
+      <td>¥850K-1.2M</td>
+      <td>Course launch + recurring sponsors</td>
+    </tr>
+  </tbody>
+</table>
 
 <p>---</p>
 
@@ -453,101 +1198,135 @@
 <p>#### <strong>Week 1: Content Audit & Optimization</strong></p>
 
 <strong>Day 1-2: Research & Planning</strong>
-<li>[ ] Analyze top 10 performing videos on your channel</li>
-<li>[ ] Identify 5 videos that can be repurposed into Shorts</li>
-<li>[ ] Create content calendar for next 30 days</li>
+<ul>
+  <li>[ ] Analyze top 10 performing videos on your channel</li>
+  <li>[ ] Identify 5 videos that can be repurposed into Shorts</li>
+  <li>[ ] Create content calendar for next 30 days</li>
+</ul>
 
 <strong>Day 3-4: Title & Thumbnail Optimization</strong>
-<li>[ ] Update titles of last 10 videos with viral hashtags</li>
-<li>[ ] Add `#撮影テクニック` `#カメラ` to all recent videos</li>
-<li>[ ] Create new thumbnail template (before/after style)</li>
+<ul>
+  <li>[ ] Update titles of last 10 videos with viral hashtags</li>
+  <li>[ ] Add </code>#撮影テクニック<code> </code>#カメラ<code> to all recent videos</li>
+  <li>[ ] Create new thumbnail template (before/after style)</li>
+</ul>
 
 <strong>Day 5-7: First Shorts Production</strong>
-<li>[ ] Create 3 Shorts from existing footage (14-45 seconds)</li>
-<li>[ ] Topics:</li>
+<ul>
+  <li>[ ] Create 3 Shorts from existing footage (14-45 seconds)</li>
+  <li>[ ] Topics:</li>
+</ul>
 <p>  1. "プロが教えるスマホ撮影の裏技"</p>
 <p>  2. "LEICAで街スナップを10倍良くする方法"</p>
 <p>  3. "初心者がやりがちなカメラ設定ミス"</p>
-<li>[ ] Schedule: Mon/Wed/Fri upload</li>
+<ul>
+  <li>[ ] Schedule: Mon/Wed/Fri upload</li>
+</ul>
 
 <strong>Success Metrics:</strong>
-<li>3 Shorts published</li>
-<li>10+ videos optimized</li>
-<li>100+ new subscribers</li>
+<ul>
+  <li>3 Shorts published</li>
+  <li>10+ videos optimized</li>
+  <li>100+ new subscribers</li>
+</ul>
 
 <p>---</p>
 
 <p>#### <strong>Week 2: Algorithm Training</strong></p>
 
 <strong>Content Production:</strong>
-<li>[ ] Publish 3 more Shorts + 1 long-form video (8-12 min)</li>
-<li>[ ] Long-form topic: "【2025年最新】初心者におすすめのカメラTOP5" (high RPM)</li>
-<li>[ ] Add strong CTA: "コメントであなたの欲しいカメラを教えてください"</li>
+<ul>
+  <li>[ ] Publish 3 more Shorts + 1 long-form video (8-12 min)</li>
+  <li>[ ] Long-form topic: "【2025年最新】初心者におすすめのカメラTOP5" (high RPM)</li>
+  <li>[ ] Add strong CTA: "コメントであなたの欲しいカメラを教えてください"</li>
+</ul>
 
 <strong>Engagement Focus:</strong>
-<li>[ ] Reply to ALL comments within 24 hours</li>
-<li>[ ] Pin question in each video: "次はどのカメラをレビューして欲しい？"</li>
-<li>[ ] Create Community post: "撮影テクニックで知りたいことは？"</li>
+<ul>
+  <li>[ ] Reply to ALL comments within 24 hours</li>
+  <li>[ ] Pin question in each video: "次はどのカメラをレビューして欲しい？"</li>
+  <li>[ ] Create Community post: "撮影テクニックで知りたいことは？"</li>
+</ul>
 
 <strong>Analytics Review:</strong>
-<li>[ ] Check which Short performed best</li>
-<li>[ ] Identify CTR and retention patterns</li>
-<li>[ ] Double down on winning format</li>
+<ul>
+  <li>[ ] Check which Short performed best</li>
+  <li>[ ] Identify CTR and retention patterns</li>
+  <li>[ ] Double down on winning format</li>
+</ul>
 
 <strong>Success Metrics:</strong>
-<li>4 videos published (3 Shorts + 1 long)</li>
-<li>50+ comments replied</li>
-<li>Identify best-performing Short format</li>
+<ul>
+  <li>4 videos published (3 Shorts + 1 long)</li>
+  <li>50+ comments replied</li>
+  <li>Identify best-performing Short format</li>
+</ul>
 
 <p>---</p>
 
 <p>#### <strong>Week 3: Collaboration Outreach</strong></p>
 
 <strong>Networking:</strong>
-<li>[ ] Comment on 3 videos each from:</li>
-<p>  - ケイゴの写真大学</p>
-<p>  - スマキンロイド</p>
-<p>  - Enter-log「えんたログ」</p>
-<li>[ ] Send collaboration email to Top 3 targets</li>
-<li>[ ] Create collaboration pitch document</li>
+<ul>
+  <li>[ ] Comment on 3 videos each from:</li>
+  <li>ケイゴの写真大学</li>
+  <li>スマキンロイド</li>
+  <li>Enter-log「えんたログ」</li>
+  <li>[ ] Send collaboration email to Top 3 targets</li>
+  <li>[ ] Create collaboration pitch document</li>
+</ul>
 
 <strong>Content Production:</strong>
-<li>[ ] 3 Shorts + 1 long-form (gear review with affiliate links)</li>
-<li>[ ] Test new format: "プロvs初心者：同じ被写体で撮り比べ"</li>
+<ul>
+  <li>[ ] 3 Shorts + 1 long-form (gear review with affiliate links)</li>
+  <li>[ ] Test new format: "プロvs初心者：同じ被写体で撮り比べ"</li>
+</ul>
 
 <strong>Monetization Setup:</strong>
-<li>[ ] Set up Amazon Associates account</li>
-<li>[ ] Add affiliate links to all gear videos</li>
-<li>[ ] Create "使用機材リスト" in channel description</li>
+<ul>
+  <li>[ ] Set up Amazon Associates account</li>
+  <li>[ ] Add affiliate links to all gear videos</li>
+  <li>[ ] Create "使用機材リスト" in channel description</li>
+</ul>
 
 <strong>Success Metrics:</strong>
-<li>1+ collaboration response</li>
-<li>4 videos published</li>
-<li>Affiliate links added to 10+ videos</li>
+<ul>
+  <li>1+ collaboration response</li>
+  <li>4 videos published</li>
+  <li>Affiliate links added to 10+ videos</li>
+</ul>
 
 <p>---</p>
 
 <p>#### <strong>Week 4: Data-Driven Optimization</strong></p>
 
 <strong>Analytics Deep Dive:</strong>
-<li>[ ] Review all Shorts performance (12 total by now)</li>
-<li>[ ] Identify top 3 by views, CTR, retention</li>
-<li>[ ] Create "viral formula" document</li>
+<ul>
+  <li>[ ] Review all Shorts performance (12 total by now)</li>
+  <li>[ ] Identify top 3 by views, CTR, retention</li>
+  <li>[ ] Create "viral formula" document</li>
+</ul>
 
 <strong>Content Refinement:</strong>
-<li>[ ] Produce 3 Shorts using winning formula</li>
-<li>[ ] 1 long-form: "月間TOP撮影テクニック" (compilation of Shorts)</li>
-<li>[ ] Cross-promote Shorts in long-form content</li>
+<ul>
+  <li>[ ] Produce 3 Shorts using winning formula</li>
+  <li>[ ] 1 long-form: "月間TOP撮影テクニック" (compilation of Shorts)</li>
+  <li>[ ] Cross-promote Shorts in long-form content</li>
+</ul>
 
 <strong>Community Building:</strong>
-<li>[ ] Launch "7日間撮影チャレンジ" in Community tab</li>
-<li>[ ] Ask followers to share photos with hashtag</li>
-<li>[ ] Feature best submissions in next video</li>
+<ul>
+  <li>[ ] Launch "7日間撮影チャレンジ" in Community tab</li>
+  <li>[ ] Ask followers to share photos with hashtag</li>
+  <li>[ ] Feature best submissions in next video</li>
+</ul>
 
 <strong>Success Metrics:</strong>
-<li>300+ new subscribers (Month 1 total: ~700)</li>
-<li>1 video with 20K+ views</li>
-<li>3 Shorts with 5K+ views each</li>
+<ul>
+  <li>300+ new subscribers (Month 1 total: ~700)</li>
+  <li>1 video with 20K+ views</li>
+  <li>3 Shorts with 5K+ views each</li>
+</ul>
 
 <p>---</p>
 
@@ -556,44 +1335,56 @@
 <p>#### <strong>Week 5-6: Viral Push</strong></p>
 
 <strong>Content Strategy:</strong>
-<li>[ ] Increase Shorts to 5/week</li>
-<li>[ ] Topics focused on trending techniques:</li>
-<p>  - "iPhone 15 Proの撮影モード完全解説"</p>
-<p>  - "LEICAっぽく撮れるスマホ設定"</p>
-<p>  - "プロの構図テクニック3選"</p>
-<li>[ ] 2 long-form videos:</li>
+<ul>
+  <li>[ ] Increase Shorts to 5/week</li>
+  <li>[ ] Topics focused on trending techniques:</li>
+  <li>"iPhone 15 Proの撮影モード完全解説"</li>
+  <li>"LEICAっぽく撮れるスマホ設定"</li>
+  <li>"プロの構図テクニック3選"</li>
+  <li>[ ] 2 long-form videos:</li>
+</ul>
 <p>  1. Camera comparison (LEICA vs SONY vs Canon)</p>
 <p>  2. Location shoot tutorial</p>
 
 <strong>Collaboration Execution:</strong>
-<li>[ ] Finalize collaboration with 1st partner</li>
-<li>[ ] Plan shoot schedule</li>
-<li>[ ] Prepare cross-promotion strategy</li>
+<ul>
+  <li>[ ] Finalize collaboration with 1st partner</li>
+  <li>[ ] Plan shoot schedule</li>
+  <li>[ ] Prepare cross-promotion strategy</li>
+</ul>
 
 <strong>Success Metrics:</strong>
-<li>10 Shorts + 2 long-form published</li>
-<li>1 collaboration confirmed</li>
-<li>500+ new subscribers</li>
+<ul>
+  <li>10 Shorts + 2 long-form published</li>
+  <li>1 collaboration confirmed</li>
+  <li>500+ new subscribers</li>
+</ul>
 
 <p>---</p>
 
 <p>#### <strong>Week 7-8: Collaboration Launch</strong></p>
 
 <strong>Content:</strong>
-<li>[ ] Publish collaboration video (aim for 2-part series)</li>
-<li>[ ] Cross-promote on partner's channel</li>
-<li>[ ] Continue 5 Shorts/week cadence</li>
-<li>[ ] 1 long-form: Behind-the-scenes of collaboration</li>
+<ul>
+  <li>[ ] Publish collaboration video (aim for 2-part series)</li>
+  <li>[ ] Cross-promote on partner's channel</li>
+  <li>[ ] Continue 5 Shorts/week cadence</li>
+  <li>[ ] 1 long-form: Behind-the-scenes of collaboration</li>
+</ul>
 
 <strong>Sponsorship Prep:</strong>
-<li>[ ] Create media kit (subscriber growth graph, demographics)</li>
-<li>[ ] Reach out to 3 camera accessory brands</li>
-<li>[ ] Prepare sponsorship proposal template</li>
+<ul>
+  <li>[ ] Create media kit (subscriber growth graph, demographics)</li>
+  <li>[ ] Reach out to 3 camera accessory brands</li>
+  <li>[ ] Prepare sponsorship proposal template</li>
+</ul>
 
 <strong>Success Metrics:</strong>
-<li>Collaboration video: 15K+ views</li>
-<li>400+ new subscribers from collaboration</li>
-<li>1 sponsor conversation initiated</li>
+<ul>
+  <li>Collaboration video: 15K+ views</li>
+  <li>400+ new subscribers from collaboration</li>
+  <li>1 sponsor conversation initiated</li>
+</ul>
 
 <p>---</p>
 
@@ -602,46 +1393,60 @@
 <p>#### <strong>Week 9-10: Algorithm Domination</strong></p>
 
 <strong>Content Blitz:</strong>
-<li>[ ] 7 Shorts/week (daily posting)</li>
-<li>[ ] Focus on trending topics:</li>
-<p>  - "2025年買うべきカメラ"</p>
-<p>  - "プロが選ぶレンズTOP3"</p>
-<p>  - "撮影が変わる小技集"</p>
-<li>[ ] 2 long-form: High-RPM reviews</li>
+<ul>
+  <li>[ ] 7 Shorts/week (daily posting)</li>
+  <li>[ ] Focus on trending topics:</li>
+  <li>"2025年買うべきカメラ"</li>
+  <li>"プロが選ぶレンズTOP3"</li>
+  <li>"撮影が変わる小技集"</li>
+  <li>[ ] 2 long-form: High-RPM reviews</li>
+</ul>
 
 <strong>Optimization:</strong>
-<li>[ ] A/B test thumbnails (upload 2 versions, swap after 48h)</li>
-<li>[ ] Test different upload times</li>
-<li>[ ] Analyze competitor trending videos</li>
+<ul>
+  <li>[ ] A/B test thumbnails (upload 2 versions, swap after 48h)</li>
+  <li>[ ] Test different upload times</li>
+  <li>[ ] Analyze competitor trending videos</li>
+</ul>
 
 <strong>Success Metrics:</strong>
-<li>1 Short with 50K+ views</li>
-<li>14 Shorts + 2 long-form published</li>
-<li>600+ new subscribers</li>
+<ul>
+  <li>1 Short with 50K+ views</li>
+  <li>14 Shorts + 2 long-form published</li>
+  <li>600+ new subscribers</li>
+</ul>
 
 <p>---</p>
 
 <p>#### <strong>Week 11-12: 10K Sprint</strong></p>
 
 <strong>Final Push:</strong>
-<li>[ ] Continue 7 Shorts/week</li>
-<li>[ ] 1 special long-form: "10,000人記念：視聴者リクエスト撮影企画"</li>
-<li>[ ] Announce upcoming online workshop/course</li>
+<ul>
+  <li>[ ] Continue 7 Shorts/week</li>
+  <li>[ ] 1 special long-form: "10,000人記念：視聴者リクエスト撮影企画"</li>
+  <li>[ ] Announce upcoming online workshop/course</li>
+</ul>
 
 <strong>Monetization Activation:</strong>
-<li>[ ] Launch first sponsored video (if secured)</li>
-<li>[ ] Create affiliate-focused video: "プロが本当に使う機材10選"</li>
-<li>[ ] Announce digital product (LUT pack or mini-course)</li>
+<ul>
+  <li>[ ] Launch first sponsored video (if secured)</li>
+  <li>[ ] Create affiliate-focused video: "プロが本当に使う機材10選"</li>
+  <li>[ ] Announce digital product (LUT pack or mini-course)</li>
+</ul>
 
 <strong>Celebration & Retention:</strong>
-<li>[ ] 10K subscriber milestone video</li>
-<li>[ ] Giveaway (camera accessory) to celebrate</li>
-<li>[ ] Thank you Community post with future roadmap</li>
+<ul>
+  <li>[ ] 10K subscriber milestone video</li>
+  <li>[ ] Giveaway (camera accessory) to celebrate</li>
+  <li>[ ] Thank you Community post with future roadmap</li>
+</ul>
 
 <strong>Success Metrics:</strong>
-<li><strong>REACH 10,000 SUBSCRIBERS</strong></li>
-<li>1 sponsored video published</li>
-<li>Digital product announced/pre-sold</li>
+<ul>
+  <li><strong>REACH 10,000 SUBSCRIBERS</strong></li>
+  <li>1 sponsored video published</li>
+  <li>Digital product announced/pre-sold</li>
+</ul>
 
 <p>---</p>
 
@@ -649,25 +1454,88 @@
 
 <h3>Quantitative Targets</h3>
 
-<p>| Metric | Start | 30 Days | 60 Days | 90 Days | % Growth |</p>
-<p>|--------|-------|---------|---------|---------|----------|</p>
-<p>| <strong>Subscribers</strong> | 6,860 | 7,560 | 8,700 | <strong>10,000+</strong> | <strong>+46%</strong> |</p>
-<p>| <strong>Avg Views/Video</strong> | 5,653 | 8,000 | 12,000 | 18,000 | <strong>+218%</strong> |</p>
-<p>| <strong>Shorts Published</strong> | 0 | 12 | 32 | 60 | - |</p>
-<p>| <strong>Long-form Published</strong> | 367 | 371 | 379 | 387 | - |</p>
-<p>| <strong>Total Views (Monthly)</strong> | ~45K | 96K | 192K | 360K | <strong>+700%</strong> |</p>
-<p>| <strong>Watch Hours</strong> | ~3K/mo | 6K | 12K | 20K | <strong>+567%</strong> |</p>
-<p>| <strong>Engagement Rate</strong> | 1.2% | 1.8% | 2.0% | 2.2% | <strong>+83%</strong> |</p>
+<table class="data-table">
+  <thead>
+    <tr>
+      <th>Metric</th>
+      <th>Start</th>
+      <th>30 Days</th>
+      <th>60 Days</th>
+      <th>90 Days</th>
+      <th>% Growth</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>Subscribers</strong></td>
+      <td>6,860</td>
+      <td>7,560</td>
+      <td>8,700</td>
+      <td><strong>10,000+</strong></td>
+      <td><strong>+46%</strong></td>
+    </tr>
+    <tr>
+      <td><strong>Avg Views/Video</strong></td>
+      <td>5,653</td>
+      <td>8,000</td>
+      <td>12,000</td>
+      <td>18,000</td>
+      <td><strong>+218%</strong></td>
+    </tr>
+    <tr>
+      <td><strong>Shorts Published</strong></td>
+      <td>0</td>
+      <td>12</td>
+      <td>32</td>
+      <td>60</td>
+      <td>-</td>
+    </tr>
+    <tr>
+      <td><strong>Long-form Published</strong></td>
+      <td>367</td>
+      <td>371</td>
+      <td>379</td>
+      <td>387</td>
+      <td>-</td>
+    </tr>
+    <tr>
+      <td><strong>Total Views (Monthly)</strong></td>
+      <td>~45K</td>
+      <td>96K</td>
+      <td>192K</td>
+      <td>360K</td>
+      <td><strong>+700%</strong></td>
+    </tr>
+    <tr>
+      <td><strong>Watch Hours</strong></td>
+      <td>~3K/mo</td>
+      <td>6K</td>
+      <td>12K</td>
+      <td>20K</td>
+      <td><strong>+567%</strong></td>
+    </tr>
+    <tr>
+      <td><strong>Engagement Rate</strong></td>
+      <td>1.2%</td>
+      <td>1.8%</td>
+      <td>2.0%</td>
+      <td>2.2%</td>
+      <td><strong>+83%</strong></td>
+    </tr>
+  </tbody>
+</table>
 
 <h3>Qualitative Milestones</h3>
 
-<li>[ ] <strong>Established Shorts presence</strong> (60+ Shorts published)</li>
-<li>[ ] <strong>1+ viral video</strong> (100K+ views)</li>
-<li>[ ] <strong>1+ collaboration</strong> completed</li>
-<li>[ ] <strong>Affiliate system</strong> generating revenue</li>
-<li>[ ] <strong>Sponsor relationship</strong> initiated</li>
-<li>[ ] <strong>Community engagement</strong> 2x increase</li>
-<li>[ ] <strong>Clear content formula</strong> documented and repeatable</li>
+<ul>
+  <li>[ ] <strong>Established Shorts presence</strong> (60+ Shorts published)</li>
+  <li>[ ] <strong>1+ viral video</strong> (100K+ views)</li>
+  <li>[ ] <strong>1+ collaboration</strong> completed</li>
+  <li>[ ] <strong>Affiliate system</strong> generating revenue</li>
+  <li>[ ] <strong>Sponsor relationship</strong> initiated</li>
+  <li>[ ] <strong>Community engagement</strong> 2x increase</li>
+  <li>[ ] <strong>Clear content formula</strong> documented and repeatable</li>
+</ul>
 
 <p>---</p>
 
@@ -696,45 +1564,57 @@
 <h3>Top 3 Immediate Actions (THIS WEEK)</h3>
 
 <p>1. <strong>🎯 ACTION #1: Create & Publish 3 Shorts</strong></p>
-<p>   - Repurpose existing content</p>
-<p>   - Use viral title formulas</p>
-<p>   - Add hashtags: #撮影テクニック #iphone撮影</p>
-<p>   - Publish Mon/Wed/Fri</p>
+<ul>
+  <li>Repurpose existing content</li>
+  <li>Use viral title formulas</li>
+  <li>Add hashtags: #撮影テクニック #iphone撮影</li>
+  <li>Publish Mon/Wed/Fri</li>
+</ul>
 
 <p>2. <strong>🎯 ACTION #2: Optimize Last 10 Videos</strong></p>
-<p>   - Update titles with hooks + hashtags</p>
-<p>   - Improve thumbnails (before/after template)</p>
-<p>   - Add affiliate links in descriptions</p>
-<p>   - Pin engaging questions in comments</p>
+<ul>
+  <li>Update titles with hooks + hashtags</li>
+  <li>Improve thumbnails (before/after template)</li>
+  <li>Add affiliate links in descriptions</li>
+  <li>Pin engaging questions in comments</li>
+</ul>
 
 <p>3. <strong>🎯 ACTION #3: Start Collaboration Outreach</strong></p>
-<p>   - Comment on 3 videos from ケイゴの写真大学</p>
-<p>   - Send collaboration email to Top 3 targets</p>
-<p>   - Create simple collaboration pitch deck</p>
+<ul>
+  <li>Comment on 3 videos from ケイゴの写真大学</li>
+  <li>Send collaboration email to Top 3 targets</li>
+  <li>Create simple collaboration pitch deck</li>
+</ul>
 
 <h3>Risk Mitigation</h3>
 
 <strong>Risk 1: Shorts don't perform</strong>
-<li>Mitigation: Test 5+ formats in first 2 weeks</li>
-<li>Pivot to winner quickly</li>
-<li>Minimum 12 Shorts before evaluation</li>
+<ul>
+  <li>Mitigation: Test 5+ formats in first 2 weeks</li>
+  <li>Pivot to winner quickly</li>
+  <li>Minimum 12 Shorts before evaluation</li>
+</ul>
 
 <strong>Risk 2: Collaboration rejections</strong>
-<li>Mitigation: Reach out to 5+ channels simultaneously</li>
-<li>Offer strong value proposition (professional expertise)</li>
-<li>Be flexible on format</li>
+<ul>
+  <li>Mitigation: Reach out to 5+ channels simultaneously</li>
+  <li>Offer strong value proposition (professional expertise)</li>
+  <li>Be flexible on format</li>
+</ul>
 
 <strong>Risk 3: Algorithm doesn't boost content</strong>
-<li>Mitigation: Focus on CTR optimization (thumbnails + titles)</li>
-<li>Test different upload times</li>
-<li>Engage heavily in first 24 hours (comments, community)</li></ul>
+<ul>
+  <li>Mitigation: Focus on CTR optimization (thumbnails + titles)</li>
+  <li>Test different upload times</li>
+  <li>Engage heavily in first 24 hours (comments, community)</li>
+</ul>
 
 <p>---</p>
 
 <h2>Appendix: SQL Queries for Future Analysis</h2>
 
 <h3>Query 1: Find Viral Videos in Your Niche</h3>
-<p>```sql</p>
+</code>`<code>sql
 <p>SELECT</p>
 <p>  video_id,</p>
 <p>  title,</p>
@@ -744,7 +1624,7 @@
 <p>  duration,</p>
 <p>  ROUND(like_count * 100.0 / view_count, 2) as like_rate,</p>
 <p>  published_at</p>
-<p>FROM `youtube-analytics-1761171850.youtube_analytics.videos`</p>
+<p>FROM </code>youtube-analytics-1761171850.youtube_analytics.videos<code></p>
 <p>WHERE (</p>
 <p>  LOWER(title) LIKE '%カメラ%' OR</p>
 <p>  LOWER(title) LIKE '%写真%' OR</p>
@@ -754,10 +1634,10 @@
 <p>  AND view_count >= 100000</p>
 <p>ORDER BY view_count DESC</p>
 <p>LIMIT 50;</p>
-<p>```</p>
+</code>`<code>
 
 <h3>Query 2: Competitor Analysis by Subscriber Tier</h3>
-<p>```sql</p>
+</code>`<code>sql
 <p>SELECT</p>
 <p>  CASE</p>
 <p>    WHEN subscriber_count < 1000 THEN 'Micro (<1K)'</p>
@@ -770,13 +1650,13 @@
 <p>  ROUND(AVG(video_count)) as avg_videos,</p>
 <p>  ROUND(AVG(view_count / video_count)) as avg_views_per_video,</p>
 <p>  ROUND(AVG(view_count / subscriber_count), 2) as avg_views_per_sub</p>
-<p>FROM `youtube-analytics-1761171850.youtube_analytics.channels`</p>
+<p>FROM </code>youtube-analytics-1761171850.youtube_analytics.channels<code></p>
 <p>GROUP BY tier</p>
 <p>ORDER BY avg_subscribers;</p>
-<p>```</p>
+</code>`<code>
 
 <h3>Query 3: Engagement Benchmarks</h3>
-<p>```sql</p>
+</code>`<code>sql
 <p>SELECT</p>
 <p>  CASE</p>
 <p>    WHEN view_count < 1000 THEN '<1K views'</p>
@@ -787,14 +1667,14 @@
 <p>  COUNT(*) as video_count,</p>
 <p>  ROUND(AVG(like_count * 100.0 / NULLIF(view_count, 0)), 2) as avg_like_rate,</p>
 <p>  ROUND(AVG(comment_count * 100.0 / NULLIF(view_count, 0)), 2) as avg_comment_rate</p>
-<p>FROM `youtube-analytics-1761171850.youtube_analytics.videos`</p>
+<p>FROM </code>youtube-analytics-1761171850.youtube_analytics.videos<code></p>
 <p>WHERE view_count > 0</p>
 <p>GROUP BY view_bucket</p>
 <p>ORDER BY avg_like_rate DESC;</p>
-<p>```</p>
+</code>`<code>
 
 <h3>Query 4: Keyword Performance Analysis</h3>
-<p>```sql</p>
+</code>`<code>sql
 <p>SELECT</p>
 <p>  keyword,</p>
 <p>  COUNT(*) as occurrences,</p>
@@ -805,7 +1685,7 @@
 <p>    view_count,</p>
 <p>    like_count,</p>
 <p>    SPLIT(LOWER(title), ' ') as keywords</p>
-<p>  FROM `youtube-analytics-1761171850.youtube_analytics.videos`</p>
+<p>  FROM </code>youtube-analytics-1761171850.youtube_analytics.videos<code></p>
 <p>  WHERE view_count >= 50000</p>
 <p>), UNNEST(keywords) as keyword</p>
 <p>WHERE LENGTH(keyword) >= 2</p>
@@ -814,17 +1694,17 @@
 <p>HAVING occurrences >= 3</p>
 <p>ORDER BY avg_views DESC</p>
 <p>LIMIT 30;</p>
-<p>```</p>
+</code>`<code>
 
 <h3>Query 5: Collaboration Partner Discovery</h3>
-<p>```sql</p>
+</code>`<code>sql
 <p>SELECT DISTINCT</p>
 <p>  c.channel_id,</p>
 <p>  c.title as channel_title,</p>
 <p>  c.subscriber_count,</p>
 <p>  c.video_count,</p>
 <p>  ROUND(c.view_count / c.video_count) as avg_views_per_video</p>
-<p>FROM `youtube-analytics-1761171850.youtube_analytics.channels` c</p>
+<p>FROM </code>youtube-analytics-1761171850.youtube_analytics.channels<code> c</p>
 <p>WHERE c.subscriber_count BETWEEN 3000 AND 50000</p>
 <p>  AND (</p>
 <p>    LOWER(c.title) LIKE '%カメラ%' OR</p>
@@ -833,7 +1713,7 @@
 <p>  )</p>
 <p>ORDER BY c.subscriber_count DESC</p>
 <p>LIMIT 20;</p>
-<p>```</p>
+</code>``
 
 <p>---</p>
 
@@ -868,5 +1748,7 @@
 
 <p>*Analysis completed on 2025-10-23 using BigQuery dataset: youtube-analytics-1761171850.youtube_analytics*</p>
 
+        </div>
+    </div>
 </body>
 </html>
